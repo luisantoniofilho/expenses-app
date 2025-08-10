@@ -1,12 +1,12 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AntDesign } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import Colors from "../constants/colors";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import IconButton from "../components/ui/IconButton";
 import AllExpensesScreen from "../screens/AllExpensesScreen";
 import RecentExpensesScreen from "../screens/RecentExpensesScreen";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamsList } from "../types/navigation";
-import IconButton from "../components/ui/IconButton";
+import { headerStyle } from "../constants/globalStyles";
 
 type TabNavigationProps = {
   navigation: NativeStackNavigationProp<RootStackParamsList, "Tabs">;
@@ -17,11 +17,8 @@ export default function TabNavigation({ navigation }: TabNavigationProps) {
 
   return (
     <Tab.Navigator
-      screenOptions={{
-        headerStyle: { backgroundColor: Colors.primary },
-        headerTintColor: "white",
-        tabBarStyle: { backgroundColor: Colors.primary },
-        tabBarActiveTintColor: Colors.secondary,
+      screenOptions={({ navigation }) => ({
+        ...headerStyle,
 
         // Add expense button
         headerRight: ({ tintColor }) => (
@@ -29,10 +26,12 @@ export default function TabNavigation({ navigation }: TabNavigationProps) {
             icon="plus"
             size={24}
             color={tintColor ?? "white"}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate("ManageExpense");
+            }}
           />
         ),
-      }}
+      })}
     >
       <Tab.Screen
         name="RecentExpenses"

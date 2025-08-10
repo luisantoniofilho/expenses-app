@@ -5,8 +5,11 @@ import { StatusBar } from "expo-status-bar";
 import ManageExpense from "./components/Expenses/ManageExpense";
 import TabNavigation from "./navigation/TabNavigation";
 
+import { RootStackParamsList } from "./types/navigation";
+import { headerStyle } from "./constants/globalStyles";
+
 export default function App() {
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator<RootStackParamsList>();
 
   return (
     <>
@@ -18,7 +21,11 @@ export default function App() {
             component={TabNavigation}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="ManageExpense" component={ManageExpense} />
+          <Stack.Screen
+            name="ManageExpense"
+            component={ManageExpense}
+            options={{ ...headerStyle, presentation: "modal" }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>

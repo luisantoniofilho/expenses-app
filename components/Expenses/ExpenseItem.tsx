@@ -1,6 +1,9 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import Colors from "../../constants/colors";
+import { Colors } from "../../constants/globalStyles";
 import { getFormattedDate } from "../../utils/date";
+import { useNavigation } from "@react-navigation/native";
+import { RootStackParamsList } from "../../types/navigation";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type ExpenseItemProps = {
   id: string;
@@ -9,10 +12,29 @@ export type ExpenseItemProps = {
   date: Date;
 };
 
-export default function ExpenseItem({ title, date, amount }: ExpenseItemProps) {
+type NavigationProp = NativeStackNavigationProp<RootStackParamsList>;
+
+export default function ExpenseItem({
+  id,
+  title,
+  date,
+  amount,
+}: ExpenseItemProps) {
+  const navigation = useNavigation<NavigationProp>();
+
+  function expensePressHandler() {
+    navigation.navigate("ManageExpense", {
+      expenseId: id,
+    });
+  }
+
   return (
     <View style={styles.rootContainer}>
-      <Pressable>
+      <Pressable
+        style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
+        android_ripple={{ color: "#cccccc" }}
+        onPress={expensePressHandler}
+      >
         <View style={styles.outerContainer}>
           {/* Expense info */}
           <View style={styles.TextContainer}>
@@ -32,12 +54,17 @@ export default function ExpenseItem({ title, date, amount }: ExpenseItemProps) {
 const styles = StyleSheet.create({
   rootContainer: {
     marginBottom: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
     borderRadius: 6,
+    marginHorizontal: 8,
     backgroundColor: Colors.primary,
     elevation: 3,
+    overflow: "hidden",
   },
+  pressable: {
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  pressed: { opacity: 0.75 },
   outerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",

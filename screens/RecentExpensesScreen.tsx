@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import ExpensesOutput from "../components/Expenses/ExpensesOutput";
-import Colors from "../constants/colors";
+import { Colors } from "../constants/globalStyles";
 
 export default function RecentExpensesScreen() {
   const DUMMY_EXPENSES = [

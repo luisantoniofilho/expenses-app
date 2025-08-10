@@ -20,12 +20,7 @@ export default function IconButton({
       style={({ pressed }) => pressed && styles.pressed}
     >
       <View style={styles.buttonContainer}>
-        <AntDesign
-          name={icon}
-          size={size}
-          color={color}
-          style={{ marginRight: 12 }}
-        />
+        <AntDesign name={icon} size={size} color={color} />
       </View>
     </Pressable>
   );
@@ -34,8 +29,7 @@ export default function IconButton({
 const styles = StyleSheet.create({
   buttonContainer: {
     borderRadius: 24,
-    padding: 6,
-    margin: 8,
+    margin: 12,
   },
   pressed: {
     opacity: 0.75,

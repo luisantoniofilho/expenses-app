@@ -1,4 +1,4 @@
 export type RootStackParamsList = {
   Tabs: undefined;
-  ManageExpense: undefined;
+  ManageExpense: { expenseId?: string };
 };
