@@ -1,29 +1,34 @@
-import { FlatList, View } from "react-native";
-import ExpenseItem, { ExpenseItemProps } from "./ExpenseItem";
+import { StyleSheet, Text, View } from "react-native";
+import { ExpenseType } from "../../types/expenses";
+import ExpensesList from "./ExpensesList";
 import ExpensesSummary from "./ExpensesSummary";
 
 export default function ExpensesOutput({
   expenses,
   expensesPeriod,
+  fallback,
 }: {
-  expenses: ExpenseItemProps[];
+  expenses: ExpenseType[];
   expensesPeriod: "7 days" | "All";
+  fallback: string;
 }) {
+  let content = <Text style={styles.infoText}>{fallback}</Text>;
+
+  if (expenses.length > 0) content = <ExpensesList expenses={expenses} />;
+
   return (
     <View>
       <ExpensesSummary expenses={expenses} periodName={expensesPeriod} />
-      <FlatList
-        data={expenses}
-        renderItem={({ item }) => (
-          <ExpenseItem
-            id={item.id}
-            date={item.date}
-            amount={item.amount}
-            title={item.title}
-          />
-        )}
-        keyExtractor={(expense) => expense.id}
-      />
+      {content}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  infoText: {
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 32,
+  },
+});

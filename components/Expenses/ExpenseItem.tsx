@@ -4,22 +4,11 @@ import { getFormattedDate } from "../../utils/date";
 import { useNavigation } from "@react-navigation/native";
 import { RootStackParamsList } from "../../types/navigation";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-
-export type ExpenseItemProps = {
-  id: string;
-  title: string;
-  amount: number;
-  date: Date;
-};
+import { ExpenseType } from "../../types/expenses";
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamsList>;
 
-export default function ExpenseItem({
-  id,
-  title,
-  date,
-  amount,
-}: ExpenseItemProps) {
+export default function ExpenseItem({ id, title, date, amount }: ExpenseType) {
   const navigation = useNavigation<NavigationProp>();
 
   function expensePressHandler() {

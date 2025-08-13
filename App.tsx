@@ -5,8 +5,9 @@ import { StatusBar } from "expo-status-bar";
 import ManageExpense from "./components/Expenses/ManageExpense";
 import TabNavigation from "./navigation/TabNavigation";
 
+import { Colors } from "./constants/globalStyles";
 import { RootStackParamsList } from "./types/navigation";
-import { headerStyle } from "./constants/globalStyles";
+import ExpensesContextProvider from "./context/expensesContext";
 
 export default function App() {
   const Stack = createNativeStackNavigator<RootStackParamsList>();
@@ -14,20 +15,30 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Tabs"
-            component={TabNavigation}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="ManageExpense"
-            component={ManageExpense}
-            options={{ ...headerStyle, presentation: "modal" }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <ExpensesContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Tabs"
+              component={TabNavigation}
+              options={{
+                headerStyle: { backgroundColor: Colors.primary },
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="ManageExpense"
+              component={ManageExpense}
+              options={{
+                headerStyle: { backgroundColor: Colors.primary },
+                headerTintColor: "white",
+                presentation: "modal",
+                contentStyle: { backgroundColor: Colors.primary },
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ExpensesContextProvider>
     </>
   );
 }

@@ -1,24 +1,21 @@
 import { AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import IconButton from "../components/ui/IconButton";
+import { Colors } from "../constants/globalStyles";
 import AllExpensesScreen from "../screens/AllExpensesScreen";
 import RecentExpensesScreen from "../screens/RecentExpensesScreen";
-import { RootStackParamsList } from "../types/navigation";
-import { headerStyle } from "../constants/globalStyles";
 
-type TabNavigationProps = {
-  navigation: NativeStackNavigationProp<RootStackParamsList, "Tabs">;
-};
-
-export default function TabNavigation({ navigation }: TabNavigationProps) {
+export default function TabNavigation() {
   const Tab = createBottomTabNavigator();
 
   return (
     <Tab.Navigator
       screenOptions={({ navigation }) => ({
-        ...headerStyle,
+        headerStyle: { backgroundColor: Colors.primary },
+        headerTintColor: "white",
+        tabBarStyle: { backgroundColor: Colors.primary },
+        tabBarActiveTintColor: Colors.secondary,
 
         // Add expense button
         headerRight: ({ tintColor }) => (

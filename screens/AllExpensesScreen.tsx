@@ -1,26 +1,19 @@
 import { StyleSheet, View } from "react-native";
 import ExpensesOutput from "../components/Expenses/ExpensesOutput";
 import { Colors } from "../constants/globalStyles";
+import { useContext } from "react";
+import { ExpensesContext } from "../context/expensesContext";
 
 export default function AllExpensesScreen() {
-  const DUMMY_EXPENSES = [
-    {
-      id: "e1",
-      title: "Shoes",
-      amount: 59.99,
-      date: new Date("2022-12-19"),
-    },
-    {
-      id: "e2",
-      title: "T-Shirts",
-      amount: 99.99,
-      date: new Date("2022-01-19"),
-    },
-  ];
+  const { expenses } = useContext(ExpensesContext);
 
   return (
     <View style={styles.rootContainer}>
-      <ExpensesOutput expenses={DUMMY_EXPENSES} expensesPeriod="All" />
+      <ExpensesOutput
+        expenses={expenses}
+        expensesPeriod="All"
+        fallback="No registered expenses found!"
+      />
     </View>
   );
 }
