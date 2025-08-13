@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import ExpensesOutput from "../components/Expenses/ExpensesOutput";
+import ExpensesOutput from "../components/ExpensesOutput/ExpensesOutput";
 import { Colors } from "../constants/globalStyles";
 import { useContext } from "react";
 import { ExpensesContext } from "../context/expensesContext";

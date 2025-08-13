@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import ManageExpense from "./components/Expenses/ManageExpense";
+import ManageExpense from "./components/ExpensesOutput/ManageExpense";
 import TabNavigation from "./navigation/TabNavigation";
 
 import { Colors } from "./constants/globalStyles";

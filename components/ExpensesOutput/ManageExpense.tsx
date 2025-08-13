@@ -2,10 +2,10 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useContext, useLayoutEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { Colors } from "../../constants/globalStyles";
-import { RootStackParamsList } from "../../types/navigation";
-import IconButton from "../ui/IconButton";
-import Button from "../ui/Button";
 import { ExpensesContext } from "../../context/expensesContext";
+import { RootStackParamsList } from "../../types/navigation";
+import Button from "../ui/Button";
+import IconButton from "../ui/IconButton";
 
 type ManageExpenseProps = NativeStackScreenProps<
   RootStackParamsList,
