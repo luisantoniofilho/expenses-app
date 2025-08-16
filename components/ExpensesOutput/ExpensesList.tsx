@@ -15,7 +15,7 @@ export default function ExpensesList({
           id={item.id}
           date={item.date}
           amount={item.amount}
-          title={item.title}
+          description={item.description}
         />
       )}
       keyExtractor={(expense) => expense.id}

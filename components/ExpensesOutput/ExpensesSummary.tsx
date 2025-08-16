@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Colors } from "../../constants/globalStyles";
 
 type ExpensesSummaryProps = {
-  expenses: { title: string; amount: number }[];
+  expenses: { description: string; amount: number }[];
   periodName: "7 days" | "All";
 };
 

@@ -25,10 +25,9 @@ function ExpensesContextProvider({ children }: { children: ReactNode }) {
 
   function updateExpense(newExpense: ExpenseType) {
     setExpenses((expenses) =>
-      expenses.filter((expense) => {
-        if (expense.id === newExpense.id) return newExpense;
-        else return expense;
-      })
+      expenses.map((expense) =>
+        expense.id === newExpense.id ? newExpense : expense
+      )
     );
   }
 

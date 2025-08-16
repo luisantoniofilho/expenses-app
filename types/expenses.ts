@@ -1,8 +1,8 @@
 export type ExpenseType = {
   id: string;
-  title: string;
   amount: number;
   date: Date;
+  description: string;
 };
 
 export type ExpenseWithoutId = Omit<ExpenseType, "id">;

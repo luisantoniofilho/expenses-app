@@ -1,14 +1,19 @@
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Colors } from "../../constants/globalStyles";
-import { getFormattedDate } from "../../utils/date";
-import { useNavigation } from "@react-navigation/native";
-import { RootStackParamsList } from "../../types/navigation";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ExpenseType } from "../../types/expenses";
+import { RootStackParamsList } from "../../types/navigation";
+import { getFormattedDate } from "../../utils/date";
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamsList>;
 
-export default function ExpenseItem({ id, title, date, amount }: ExpenseType) {
+export default function ExpenseItem({
+  id,
+  description,
+  date,
+  amount,
+}: ExpenseType) {
   const navigation = useNavigation<NavigationProp>();
 
   function expensePressHandler() {
@@ -27,7 +32,7 @@ export default function ExpenseItem({ id, title, date, amount }: ExpenseType) {
         <View style={styles.outerContainer}>
           {/* Expense info */}
           <View style={styles.TextContainer}>
-            <Text style={styles.expenseText}>{title}</Text>
+            <Text style={styles.expenseText}>{description}</Text>
             <Text style={styles.date}>{getFormattedDate(date)}</Text>
           </View>
           {/* Amount */}
