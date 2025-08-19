@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import IconButton from "../components/ui/IconButton";
 import { Colors } from "../constants/globalStyles";
-import AllExpensesScreen from "../screens/AllExpensesScreen";
-import RecentExpensesScreen from "../screens/RecentExpensesScreen";
+import AllExpenses from "../screens/AllExpenses";
+import RecentExpenses from "../screens/RecentExpenses";
 
 export default function TabNavigation() {
   const Tab = createBottomTabNavigator();
@@ -32,7 +32,7 @@ export default function TabNavigation() {
     >
       <Tab.Screen
         name="RecentExpenses"
-        component={RecentExpensesScreen}
+        component={RecentExpenses}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="hourglass" color={color} size={size} />
@@ -43,7 +43,7 @@ export default function TabNavigation() {
       />
       <Tab.Screen
         name="AllExpenses"
-        component={AllExpensesScreen}
+        component={AllExpenses}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="calendar" color={color} size={size} />

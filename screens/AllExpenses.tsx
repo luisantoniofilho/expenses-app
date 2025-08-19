@@ -4,7 +4,7 @@ import { Colors } from "../constants/globalStyles";
 import { useContext } from "react";
 import { ExpensesContext } from "../context/expensesContext";
 
-export default function AllExpensesScreen() {
+export default function AllExpenses() {
   const { expenses } = useContext(ExpensesContext);
 
   return (

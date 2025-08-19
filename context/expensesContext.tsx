@@ -1,16 +1,18 @@
 import { createContext, ReactNode, useState } from "react";
-import { ExpenseType, ExpenseWithoutId } from "../types/expenses";
+import { ExpenseType } from "../types/expenses";
 
 type ExpensesContextType = {
   expenses: ExpenseType[];
-  addExpense: (expense: ExpenseWithoutId) => void;
+  addExpense: (expense: ExpenseType) => void;
+  putExpenses: (expenses: ExpenseType[]) => void;
   updateExpense: (expense: ExpenseType) => void;
   removeExpense: (id: string) => void;
 };
 
 export const ExpensesContext = createContext<ExpensesContextType>({
   expenses: [],
-  addExpense: (expense: ExpenseWithoutId) => {},
+  addExpense: (expense: ExpenseType) => {},
+  putExpenses: (expenses: ExpenseType[]) => {},
   updateExpense: (expense: ExpenseType) => {},
   removeExpense: (id: string) => {},
 });
@@ -18,9 +20,13 @@ export const ExpensesContext = createContext<ExpensesContextType>({
 function ExpensesContextProvider({ children }: { children: ReactNode }) {
   const [expenses, setExpenses] = useState<ExpenseType[]>([]);
 
-  function addExpense(expense: ExpenseWithoutId) {
-    const id = new Date().toString() + Math.random().toString();
-    setExpenses((expenses) => [...expenses, { id, ...expense }]);
+  function addExpense(expense: ExpenseType) {
+    setExpenses((expenses) => [...expenses, expense]);
+  }
+
+  function putExpenses(expenses: ExpenseType[]) {
+    const invertedExpenses = [...expenses].reverse();
+    setExpenses(invertedExpenses);
   }
 
   function updateExpense(newExpense: ExpenseType) {
@@ -40,6 +46,7 @@ function ExpensesContextProvider({ children }: { children: ReactNode }) {
       value={{
         expenses: expenses,
         addExpense: addExpense,
+        putExpenses: putExpenses,
         updateExpense: updateExpense,
         removeExpense: removeExpense,
       }}
